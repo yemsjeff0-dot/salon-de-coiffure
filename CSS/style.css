@@ -118,7 +118,7 @@ nav .ip a {
     padding: 10px 20px;
     border-radius: 5px;
     position: relative;
-    right: -100px;
+    left: 200%;
 }
 nav .ip a:hover {
     background-color: #f9d976; /* Un doré un peu plus clair */

@@ -48,7 +48,6 @@ $image_initiale = (count($images_catalogue) > 0) ? $images_catalogue[0] : "../im
         <meta charset="UTF-8">
         <title>Catalogue - Golden Touch</title>
         <link rel="stylesheet" href="../CSS/galerie.css"> 
-        <link rel="icon" type="image/png" href="../image/logo.png"> 
         <style>
             /* Positionnement de la Navbar */
             .navbar-vip {
@@ -94,7 +93,7 @@ $image_initiale = (count($images_catalogue) > 0) ? $images_catalogue[0] : "../im
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="../Salon De Coiffure/service.html">Services</a></li>
                 <li><a href="galerie.php">catalogue</a></li>
-                <li><a href="#">Compte</a></li>
+                <!-- <li><a href="#">Compte</a></li> -->
             </ul>
         </nav>
 

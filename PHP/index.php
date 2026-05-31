@@ -72,7 +72,7 @@
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="../Salon De Coiffure/service.html">Services</a></li>
                 <li><a href="galerie.php">catalogue</a></li>
-                <li><a href="#">Compte</a></li>
+                <!-- <li><a href="#">Compte</a></li> -->
                 <li class="ip"><a href="galerie.php">Reserver-maintenant</a></li>
             </ul>
         </nav>
@@ -88,15 +88,15 @@
         <button class="contact-button">Prendre un rendez-vous</button>
     </div>
     <div class="service">
-        <h3><a href="coupes.html">COUPES</a></h3>
-        <h3><a href="soins.html">SOINS</a></h3>
-        <h3><a href="manicure.html">MANICURE/PEDICURE</a></h3>
-        <h3 id="premium"><a href="premium.html">PREMIUM</a></h3>
+        <h3><a href="galerie.php?cat=coupes">COUPES</a></h3>
+        <h3><a href="galerie.php?cat=soins">SOINS</a></h3>
+        <h3><a href="galerie.php?cat=manicure">MANICURE/PEDICURE</a></h3>
+        <h3 id="premium"><a href="galerie.php?cat=premium">PREMIUM</a></h3>
     </div>
     <div class="services">
         <div class="diaporama">
             <?php
-                // On demande à PHP de trouver toutes les images dans le dossier 'soins'
+                // On demande à PHP de trouver toutes les images dans le dossier 'coupes' (homme et femme)
                 $images_coupes_H = glob("../image/coupes/Coiffure Homme/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
                 $images_coupes_F = glob("../image/coupes/Coiffure Femme/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
                 $images_coupes = [];
@@ -142,7 +142,7 @@
         
         <div class="diaporama">
             <?php
-                // On demande à PHP de trouver toutes les images dans le dossier 'soins'
+                // On demande à PHP de trouver toutes les images dans le dossier 'manicure-pedicure'
                 $images_manicure_pedicure = glob("../image/Manicure-Pedicure/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
 
                 // S'il y a des images, on fait une boucle pour les afficher une par une
@@ -159,7 +159,7 @@
     
         <div class="diaporama">
             <?php
-                // On demande à PHP de trouver toutes les images dans le dossier 'soins'
+                // On demande à PHP de trouver toutes les images dans le dossier 'premium'
                 $images_premium = glob("../image/PREMIUM/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
 
                 // S'il y a des images, on fait une boucle pour les afficher une par une
@@ -187,16 +187,20 @@
             // S'il y a plus d'une image, on lance le chronomètre
             if(slides.length > 1) {
                 setInterval(() => {
-                    // 1. On cache l'image actuelle en lui retirant la classe 'active'
+                    // On cache l'image actuelle en lui retirant la classe 'active'
                     slides[indexCourant].classList.remove('active');
                     
-                    // 2. On calcule le numéro de l'image suivante (et on repart à zéro à la fin)
+                    // On calcule le numéro de l'image suivante (et on repart à zéro à la fin)
                     indexCourant = (indexCourant + 1) % slides.length;
                     
-                    // 3. On affiche la nouvelle image en lui donnant la classe 'active'
+                    // On affiche la nouvelle image en lui donnant la classe 'active'
                     slides[indexCourant].classList.add('active');
                 }, 3000); // 3000 millisecondes = changement toutes les 3 secondes
             }
+        });
+
+        document.querySelector('.contact-button').addEventListener('click', () => {
+            window.location.href = 'galerie.php';
         });
     </script>
 </body>

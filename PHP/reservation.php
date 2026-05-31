@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nom_client = $conn->real_escape_string($_POST['nom_client']);
         $telephone = $conn->real_escape_string($_POST['telephone']);
         $categorie_service = $conn->real_escape_string($_POST['categorie_service']);
-        $image_style = $conn->real_escape_string(basename($_POST['image_style']));
+        $image_style = $conn->real_escape_string($_POST['image_style']);
         $date_rdv = $conn->real_escape_string($_POST['date_rdv']);
         $heure_rdv = $conn->real_escape_string($_POST['heure_rdv']);
 
