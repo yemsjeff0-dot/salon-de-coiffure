@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <title>Nos different service</title>
+    <style>
+        .propriete{
+            border: 10px ridge rgba(100, 50, 255, 0.5);
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px 3px rgba(100, 50, 255, 0.5);
+            margin: 1% 2% 2% 1%;
+            width: 85%;
+            height: 15%;
+            padding: 5%;
+            color: white;
+        }
+
+        /* Le style de base de ta carte/bannière */
+        .propriete {
+            border: 2px solid rgba(100, 50, 255, 0.3); 
+            border-radius: 8px; 
+            transition: all 0.3s ease-in-out; 
+        }
+
+        /* L'effet au survol de la souris */
+        .propriete:hover {
+            border-color: rgba(212, 175, 55, 0.9);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6), 
+                        0 0 30px rgba(212, 175, 55, 0.2);
+            transform: scale(1.02);
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        #coupes{
+            background-image: url(../image/coupe.jpg);
+            background-size: 100% 100%;
+        }
+
+        #soins{
+            background-image: url(../image/soins.jpg);
+            background-size: 100% 100%;
+        }
+
+        #manped{
+            background-image: url(../image/manicure.jpg);
+            background-size: 100% 100%;
+        }
+
+        #premium{
+            background-image: url(../image/premium.jpg);
+            background-size: 100% 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="../php/galerie.php?cat=coupes">
+        <div class="propriete" id="coupes">
+            <h2>Coupes & Stylisme</h2>
+            <p>Consulter notre collection de coiffure mixte
+                pour trouver l'inspiration parfaite pour votre prochain look. 
+                Des coupes classiques aux styles modernes, notre galerie 
+                présente une variété de coiffures adaptées à tous les goûts et 
+                types de cheveux. Que vous cherchiez une transformation audacieuse 
+                ou une mise à jour subtile, notre galerie de coiffure mixte est 
+                votre destination ultime pour découvrir des idées de coiffure tendance 
+                et intemporelles
+            </p>
+        </div>
+    </a>
+    <a href="../php/galerie.php?cat=soins">
+        <div class="propriete" id="soins">
+            <h2>Rituels de Soins</h2>
+            <p>
+                Découvrez notre gamme de soins capillaires pour des cheveux sains et éclatants. 
+                Nos produits de qualité sont conçus pour nourrir, hydrater et protéger vos cheveux, 
+                que vous ayez les cheveux secs, abîmés ou normaux. Offrez à vos cheveux le traitement 
+                qu'ils méritent avec nos soins capillaires efficaces et adaptés à tous les types de cheveux.
+            </p>
+        </div>
+    </a>
+    <a href="../php/galerie.php?cat=manicure">
+        <div class="propriete" id="manped">
+            <h2>Manicure/pedicure</h2>
+            <p>
+                Offrez à vos mains et pieds une touche de beauté et de soin avec notre service de manucure et pédicure. 
+                Nos professionnels qualifiés utilisent des techniques expertes pour prendre soin de vos ongles, 
+                cuticules et peau, vous offrant une expérience de détente et de beauté. Que vous souhaitiez une manucure classique, 
+                une pédicure revitalisante ou des designs d'ongles créatifs, notre service de manucure et pédicure est là pour répondre à tous vos besoins de soins des ongles.
+            </p>
+        </div>
+    </a>
+    <a href="../php/galerie.php?cat=premium">
+        <div class="propriete" id="premium">
+            <h2>PREMIUM</h2>
+            <p>
+                Découvrez notre service PREMIUM, une expérience de coiffure de luxe conçue pour ceux qui recherchent l'excellence et le raffinement. 
+                Notre équipe de stylistes experts utilise des techniques avancées et des produits de haute qualité pour créer des coiffures personnalisées qui mettent en valeur votre beauté unique. 
+                Que vous souhaitiez une transformation audacieuse ou une mise à jour subtile, notre service PREMIUM est là pour vous offrir une expérience de coiffure exceptionnelle et un résultat impeccable.
+            </p>
+        </div>
+    </a>
+</body>
+</html>
