@@ -30,6 +30,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $date_rdv = $conn->real_escape_string($_POST['date_rdv']);
         $heure_rdv = $conn->real_escape_string($_POST['heure_rdv']);
 
+        // 1. Contrainte de date : Pas de réservation dans le passé
+        $date_actuelle = date('Y-m-d');
+        if ($date_rdv < $date_actuelle) {
+            die("<h3>Erreur : Vous ne pouvez pas réserver à une date passée. Veuillez reculer d'une page et choisir une autre date.</h3>");
+        }
+
+        // 2. Contrainte d'horaire : Heures d'ouverture du salon (ex: 09h00 à 19h00)
+        if ($heure_rdv < "09:00" || $heure_rdv > "19:00") {
+            die("<h3>Erreur : Le salon est ouvert uniquement de 09h00 à 19h00.</h3>");
+        }
+
+        // 3. Contrainte de chevauchement : Écart d'au moins 1 heure (60 minutes)
+        // On cherche tous les rendez-vous déjà enregistrés pour la même date
+        $sql_check = "SELECT heure_rdv FROM reservations WHERE date_rdv = ?";
+        $stmt_check = $conn->prepare($sql_check);
+        $stmt_check->bind_param("s", $date_rdv);
+        $stmt_check->execute();
+        $result_check = $stmt_check->get_result();
+
+        $conflit = false;
+        // On convertit l'heure demandée en "timestamp" (nombre de secondes) pour faire des maths facilement
+        $nouvelle_heure = strtotime($heure_rdv); 
+
+        while ($row = $result_check->fetch_assoc()) {
+            $heure_existante = strtotime($row['heure_rdv']);
+            
+            // On calcule la différence absolue entre les deux heures, divisée par 60 pour l'avoir en minutes
+            $diff_minutes = abs($nouvelle_heure - $heure_existante) / 60;
+            
+            // Si la différence est inférieure à 60 minutes, il y a conflit !
+            if ($diff_minutes < 60) {
+                $conflit = true;
+                break; 
+            }
+        }
+        $stmt_check->close();
+
+        if ($conflit) {
+            die("<h3>Erreur : Ce créneau est indisponible. Veuillez choisir une heure avec au moins 1 heure d'écart par rapport aux rendez-vous existants.</h3>");
+        }
+
         // Requête SQL d'insertion
         $sql = "INSERT INTO reservations (nom_client, telephone, categorie_service, image_style, date_rdv, heure_rdv) 
                 VALUES ('$nom_client', '$telephone', '$categorie_service', '$image_style', '$date_rdv', '$heure_rdv')";
@@ -40,14 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "Erreur lors de l'enregistrement : " . $conn->error;
         }
 
-        // Fermeture de la connexion
         $conn->close();
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
