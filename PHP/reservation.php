@@ -209,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     <?php endif; ?>
 
-    <a href="galerie.php" class="back-link">← Retourner au catalogue</a>
+    <a href="galerie.php" class="back-link">Retourner au catalogue</a>
 </div>
 
 </body>
